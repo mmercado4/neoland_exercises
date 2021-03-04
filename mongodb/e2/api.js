@@ -10,19 +10,7 @@ const DB_POKEMON = "db/dbPokemon.json";
 api.use(bodyParser.json());
 api.use(bodyParser.urlencoded({ extended: true })); //Decodificamos la info del body.
 
-//DB Conection
-
-mongoose.connect(
-  "mongodb://localhost/pokemon",
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  (error, response) => {
-    if (error) {
-      console.error(error, "DB connection failed.");
-    } else {
-      console.log("DB connected.");
-    }
-  }
-);
+//CORS Policy
 
 api.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -40,17 +28,30 @@ api.use((req, res, next) => {
   });
 });
 
+//DB Conection
+
+mongoose.connect(
+  "mongodb://localhost/pokemon",
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  (error, response) => {
+    if (error) {
+      console.error(error, "DB connection failed");
+    } else {
+      console.log("DB connected");
+    }
+  }
+);
+
+const Pokemon = require("./models/pokemon");
+
 //GET
 api.get("/api/pokemons", (request, response) => {
-  fs.readFile(DB_POKEMON, (error, data) => {
-    if (error) throw error; //Similar al console.error. Elevar o notificar una excepción.
-    const pokemonJSON = JSON.parse(data); //Data no lo lee como un JSON, sino como texto plano.
-    response.status(200).send({
-      success: true,
-      url: "/api/pokemons",
-      method: "GET",
-      pokemons: pokemonJSON,
-    });
+  Pokemon.find((error, data) => {
+    if (error) {
+      console.error(error);
+    } else {
+      response.send(data);
+    }
   });
 });
 
