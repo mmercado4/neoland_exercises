@@ -1,6 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
 const api = express();
 
@@ -8,6 +9,20 @@ const DB_POKEMON = "db/dbPokemon.json";
 
 api.use(bodyParser.json());
 api.use(bodyParser.urlencoded({ extended: true })); //Decodificamos la info del body.
+
+//DB Conection
+
+mongoose.connect(
+  "mongodb://localhost/pokemon",
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  (error, response) => {
+    if (error) {
+      console.error(error, "DB connection failed.");
+    } else {
+      console.log("DB connected.");
+    }
+  }
+);
 
 api.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
