@@ -66,35 +66,20 @@ api.post("/api/pokemons", (request, response) => {
     });
   } else {
     // En request.query tenemos todos los parámetros que se envíen al microservicio.
-    fs.readFile(DB_POKEMON, (error, data) => {
-      if (error) throw error;
-      const allPokemons = JSON.parse(data);
-      const newPokemon = {
-        id: Math.max(...allPokemons.map((pokemon) => pokemon.id)) + 1,
-        name: request.body.name,
-        type: request.body.type,
-      };
-      allPokemons.push(newPokemon);
+    const newPokemon = new Pokemon({
+      name: request.body.name,
+      type: request.body.type,
+    });
 
-      fs.writeFile(DB_POKEMON, JSON.stringify(allPokemons), (error) => {
-        if (error) {
-          response.status(400).send({
-            success: false,
-            url: "/api/pokemons",
-            method: "POST",
-            message: "Fallo al añadir el pokemon",
-            error: error,
-          });
-        } else {
-          response.status(201).send({
-            success: true,
-            url: "/api/pokemons",
-            method: "POST",
-            message: "Pokemon añadido correctamente",
-            newPokemon: newPokemon,
-          });
-        }
-      });
+    newPokemon.save((error) => {
+      if (error) console.error(error);
+      else {
+        response.send({
+          succcess: true,
+          message: "Pokemon was added successfully",
+          pokemon: newPokemon.name,
+        });
+      }
     });
   }
 });
