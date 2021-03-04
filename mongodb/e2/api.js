@@ -86,7 +86,7 @@ api.post("/api/pokemons", (request, response) => {
 
 //DELETE
 api.delete("/api/pokemons", (request, response) => {
-  const id = Number.parseInt(request.body.id);
+  const id = request.body.id;
   if (!id) {
     response.status(400).send({
       success: false,
@@ -95,34 +95,14 @@ api.delete("/api/pokemons", (request, response) => {
       message: "Id is required",
     });
   } else {
-    fs.readFile(DB_POKEMON, (error, data) => {
-      if (error) throw error;
-      const allPokemons = JSON.parse(data);
-      const deletedIndex = allPokemons.findIndex(
-        (pokemon) => pokemon.id === id
-      );
-      allPokemons.splice(deletedIndex, 1);
-      //También se puede hacer un filter a la inversa para obtener todos los elementos menos el que hay que eliminar
-
-      fs.writeFile(DB_POKEMON, JSON.stringify(allPokemons), (error) => {
-        if (error) {
-          response.status(400).send({
-            success: false,
-            url: "/api/pokemons",
-            method: "DELETE",
-            message: "Delete pokemon failed!",
-            error: error,
-          });
-        } else {
-          response.status(200).send({
-            success: true,
-            url: "/api/pokemons",
-            method: "DELETE",
-            message: "Pokemon deleted successfully!",
-            pokemonId: id,
-          });
-        }
-      });
+    Pokemon.deleteOne({ _id: id }, (error) => {
+      if (error) console.error(error);
+      else {
+        response.send({
+          success: true,
+          message: "Pokemon deleted successfully",
+        });
+      }
     });
   }
 });
