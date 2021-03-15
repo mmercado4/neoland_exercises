@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #e7e7de;
+  font-family: "Syne Mono", monospace;
+  color: #0f3057;
+}
+
+h1,
+h2,
+h3 {
+  text-align: center;
+}
+
+h1 {
+  font-size: 4em;
+  margin: 30px 0 20px 0;
+}
+
+h2 {
+  font-size: 3em;
+}
+
+h3 {
+  font-size: 2em;
+}
+
+/*INDEX*/
+
+.alias-container {
+  background-color: #0f3057;
+  width: 50%;
+  margin: 0 auto;
+  min-height: 300px;
+  color: #e7e7de;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  margin-top: 30px;
+}
+
+.alias-container p {
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+}
+
+.alias-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.alias-input input {
+  background-color: transparent;
+  color: #e7e7de;
+  font-size: 1.2em;
+  font-family: "Syne Mono", monospace;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #e7e7de;
+  width: 70%;
+  padding-bottom: 7px;
+  margin-bottom: 20px;
+}
+
+.alias-input a {
+  background-color: #e7e7de;
+  color: #0f3057;
+  font-size: 1.2em;
+  font-family: "Syne Mono", monospace;
+  text-decoration: none;
+  padding: 10px 20px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+/*CHAT*/
+
+.message-container {
+  width: 70%;
+  height: 60vh;
+  background-color: #0f3057;
+  margin: 0 auto;
+  color: #e7e7de;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+
+.message-container ul {
+  height: 100%;
+  padding: 15px;
+  width: 90%;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+.send-input {
+  padding: 10px 0;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.send-input input {
+  background-color: transparent;
+  color: #e7e7de;
+  font-size: 1.2em;
+  font-family: "Syne Mono", monospace;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #e7e7de;
+  width: 70%;
+  margin-right: 20px;
+}
+
+ul li.right {
+  text-align: right;
+}
+
+ul li.left {
+  text-align: left;
+}
