@@ -140,7 +140,7 @@ api.get("/api/pokemons/page/:page", (request, response) => {
   Pokemon.find((error, data) => {
     if (error) console.error(error);
     else {
-      response.status(200).send(data);
+      response.status(200).send(data); //Faltaría enviar el número de páginas de alguna forma.
     }
   })
     .limit(PAGE_SIZE)
