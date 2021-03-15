@@ -135,37 +135,16 @@ api.put("/api/pokemons/:id", (request, response) => {
 api.get("/api/pokemons/page/:page", (request, response) => {
   let page = Number.parseInt(request.params.page);
   //Sacamos el indice del array que queremos mostrar.
-  fs.readFile(DB_POKEMON, (error, data) => {
-    if (error) throw error;
-    let pokeList = JSON.parse(data);
-    const PAGE_SIZE = 10;
-    let start = page * PAGE_SIZE - PAGE_SIZE;
-    let end = start + PAGE_SIZE;
-    let pokePage = pokeList.slice(start, end);
-    let totalPages = Math.round(pokeList.length / PAGE_SIZE);
-    //Pokelist es un array. Podemos montar arrays de arrays de 5 elementos dentro de cada uno. ESTO ESTÁ BIEN, PERO NO ES LO MEJOR.
-    /*
-    let pokePages = []; //Array de arrays.
-    let pokePage = [];
-    pokeList.map((pokemon) => {
-      if (pokePage.length === 5) {
-        pokePages.push(pokePage);
-        pokePage = [];
-      }
-      pokePage.push(pokemon);
-      if (pokeList.length === pokeList.indexOf(pokemon) + 1) {
-        pokePages.push(pokePage);
-      }
-    });
-    */
-    response.status(200).send({
-      success: true,
-      url: `/api/pokemons/pages/${page}`,
-      method: "GET",
-      pages: totalPages,
-      pokemons: pokePage,
-    });
-  });
+  const PAGE_SIZE = 5;
+  let skipped = (page - 1) * PAGE_SIZE;
+  Pokemon.find((error, data) => {
+    if (error) console.error(error);
+    else {
+      response.status(200).send(data);
+    }
+  })
+    .limit(PAGE_SIZE)
+    .skip(skipped);
 });
 
 //GET Pages LIMIT-OFFSET
