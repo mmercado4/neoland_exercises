@@ -5,9 +5,9 @@
 }
 
 body {
-  background-color: #e7e7de;
-  font-family: "Syne Mono", monospace;
-  color: #0f3057;
+  background-color: #f7f7e8;
+  font-family: "Rubik", sans-serif;
+  color: #557174;
 }
 
 h1,
@@ -32,21 +32,23 @@ h3 {
 /*INDEX*/
 
 .alias-container {
-  background-color: #0f3057;
+  background-color: #c7cfb7;
   width: 50%;
   margin: 0 auto;
   min-height: 300px;
-  color: #e7e7de;
+  color: #f7f7e8;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .alias-container p {
   font-size: 1.5em;
   text-align: center;
-  margin-top: 30px;
-  padding-top: 20px;
 }
 
 .alias-input {
@@ -55,13 +57,14 @@ h3 {
   align-items: center;
   flex-direction: column;
   margin-top: 40px;
+  width: 100%;
 }
 
 .alias-input input {
   background-color: transparent;
   color: #e7e7de;
   font-size: 1.2em;
-  font-family: "Syne Mono", monospace;
+  font-family: "Rubik", sans-serif;
   outline: none;
   border: none;
   border-bottom: 1px solid #e7e7de;
@@ -74,7 +77,7 @@ h3 {
   background-color: #e7e7de;
   color: #0f3057;
   font-size: 1.2em;
-  font-family: "Syne Mono", monospace;
+  font-family: "Rubik", sans-serif;
   text-decoration: none;
   padding: 10px 20px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -84,9 +87,9 @@ h3 {
 /*CHAT*/
 
 .message-container {
-  width: 70%;
+  width: 50%;
   height: 60vh;
-  background-color: #0f3057;
+  background-color: #c7cfb7;
   margin: 0 auto;
   color: #e7e7de;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -102,11 +105,61 @@ h3 {
 .message-container ul {
   height: 100%;
   padding: 15px;
-  width: 90%;
+  width: 80%;
+  position: relative;
 }
 
 ul li {
   list-style-type: none;
+  background-color: #557174;
+  padding: 10px 20px;
+  width: 45%;
+  position: relative;
+  z-index: 1;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+ul li.right {
+  margin: 10px 0 0 auto;
+}
+
+ul li.left {
+  margin: 10px auto 0 0;
+}
+
+ul li:first-child {
+  margin-top: 0;
+}
+
+ul li.right:after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #557174;
+  right: -5px;
+  top: 5px;
+  transform: rotate(45deg);
+  z-index: 10;
+  border-radius: 2px;
+}
+
+ul li.left:after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #557174;
+  left: -5px;
+  top: 5px;
+  transform: rotate(45deg);
+  z-index: 10;
+  border-radius: 2px;
+}
+
+ul li p span {
+  font-size: 10px;
 }
 
 .send-input {
@@ -119,20 +172,12 @@ ul li {
 
 .send-input input {
   background-color: transparent;
-  color: #e7e7de;
+  color: #557174;
   font-size: 1.2em;
   font-family: "Syne Mono", monospace;
   outline: none;
   border: none;
-  border-bottom: 1px solid #e7e7de;
+  border-bottom: 1px solid #557174;
   width: 70%;
   margin-right: 20px;
-}
-
-ul li.right {
-  text-align: right;
-}
-
-ul li.left {
-  text-align: left;
 }

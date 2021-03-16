@@ -2,7 +2,7 @@ const user = localStorage.getItem("username");
 const username = document.querySelector("#username");
 const sendBtn = document.querySelector("#send-message");
 
-username.innerHTML = `Bienvenido ${user}!!`;
+username.innerHTML = `Welcome ${user}!`;
 
 const socket = io();
 
