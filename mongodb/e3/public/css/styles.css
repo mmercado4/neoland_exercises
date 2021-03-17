@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #f7f7e8;
+  background-color: #e8eae6;
   font-family: "Rubik", sans-serif;
   color: #557174;
 }
@@ -35,7 +35,7 @@ h3 {
   background-color: #c7cfb7;
   width: 50%;
   margin: 0 auto;
-  min-height: 300px;
+  min-height: 200px;
   color: #f7f7e8;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -62,20 +62,20 @@ h3 {
 
 .alias-input input {
   background-color: transparent;
-  color: #e7e7de;
+  color: #556052;
   font-size: 1.2em;
   font-family: "Rubik", sans-serif;
   outline: none;
   border: none;
-  border-bottom: 1px solid #e7e7de;
+  border-bottom: 1px solid #556052;
   width: 70%;
   padding-bottom: 7px;
   margin-bottom: 20px;
 }
 
 .alias-input a {
-  background-color: #e7e7de;
-  color: #0f3057;
+  background-color: #55717491;
+  color: #cfdac8;
   font-size: 1.2em;
   font-family: "Rubik", sans-serif;
   text-decoration: none;
@@ -84,10 +84,15 @@ h3 {
   cursor: pointer;
 }
 
+.alias-input a:hover {
+  background-color: #557174;
+  transition: background-color 0.5s;
+}
+
 /*CHAT*/
 
 .message-container {
-  width: 50%;
+  width: 90%;
   height: 60vh;
   background-color: #c7cfb7;
   margin: 0 auto;
@@ -102,22 +107,50 @@ h3 {
   padding-bottom: 20px;
 }
 
+@media (min-width: 768px) {
+  .message-container {
+    width: 50%;
+  }
+}
+
 .message-container ul {
-  height: 100%;
   padding: 15px;
   width: 80%;
   position: relative;
+  overflow: scroll;
+}
+
+.message-container ul::-webkit-scrollbar {
+  display: none;
 }
 
 ul li {
   list-style-type: none;
   background-color: #557174;
   padding: 10px 20px;
-  width: 45%;
+  width: 70%;
   position: relative;
-  z-index: 1;
+  z-index: 10;
   border-radius: 5px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  animation: animate 0.5s ease;
+}
+
+@media (min-width: 768px) {
+  ul li {
+    width: 45%;
+  }
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0%;
+    transform: scale(0.1);
+  }
+  100% {
+    opacity: 100%;
+    transform: scale(1);
+  }
 }
 
 ul li.right {
@@ -132,7 +165,7 @@ ul li:first-child {
   margin-top: 0;
 }
 
-ul li.right:after {
+ul li.right:before {
   content: "";
   position: absolute;
   width: 15px;
@@ -141,11 +174,11 @@ ul li.right:after {
   right: -5px;
   top: 5px;
   transform: rotate(45deg);
-  z-index: 10;
+  z-index: 1;
   border-radius: 2px;
 }
 
-ul li.left:after {
+ul li.left:before {
   content: "";
   position: absolute;
   width: 15px;
@@ -154,12 +187,19 @@ ul li.left:after {
   left: -5px;
   top: 5px;
   transform: rotate(45deg);
-  z-index: 10;
+  z-index: 1;
   border-radius: 2px;
 }
 
-ul li p span {
+ul li p.msg {
+  margin-top: 5px;
+}
+
+ul li p.time {
   font-size: 10px;
+  margin-top: 5px;
+  text-align: right;
+  color: #e7e7debb;
 }
 
 .send-input {
@@ -174,10 +214,16 @@ ul li p span {
   background-color: transparent;
   color: #557174;
   font-size: 1.2em;
-  font-family: "Syne Mono", monospace;
+  font-family: "Rubik", sans-serif;
   outline: none;
   border: none;
   border-bottom: 1px solid #557174;
   width: 70%;
   margin-right: 20px;
+}
+
+#send-message i {
+  color: #557174;
+  font-size: 1.5em;
+  cursor: pointer;
 }

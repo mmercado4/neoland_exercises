@@ -24,9 +24,10 @@ app.use(
   "/js",
   express.static(__dirname + "/node_modules/socket.io/client-dist")
 );
+
 app.use(
-  "/css",
-  express.static(__dirname + "/node_modules/@fortawesome/fontawesome-free/css")
+  "/",
+  express.static(__dirname + "/node_modules/@fortawesome/fontawesome-free/")
 );
 
 server.listen(1333, () => {
