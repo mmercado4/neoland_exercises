@@ -21,6 +21,22 @@ sendBtn.addEventListener("click", () => {
 
 function sendMessage(message, user) {
   socket.emit("addNewMessage", message, user);
+  let newMessage = {
+    user: user,
+    message: message,
+  };
+  const opts = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newMessage), //Ojo hay que parsearlo
+  };
+  fetch("http://localhost:1333/save-message", opts)
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.error(error))
+    .finally(() => console.log("fetch done"));
 }
 
 socket.on("printMessage", (message, username) => {
